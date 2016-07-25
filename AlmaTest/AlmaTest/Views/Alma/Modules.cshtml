@@ -1,0 +1,19 @@
+﻿@model AlmaTest.Models.ModulesViewModel
+
+<table style="margin-top: 10px;" class="table table-bordered">
+    <tr>
+        <th>Position</th>
+        <th>Module</th>
+        <th>Kernel</th>
+        <th>Price</th>
+    </tr>
+    @foreach (var module in Model.Modules)
+    {
+        <tr>
+            <td>@module.Position</td>
+            <td>@module.module</td>
+            <td>@module.Kernel</td>
+            <td>@module.Price</td>
+        </tr>
+    }
+</table>

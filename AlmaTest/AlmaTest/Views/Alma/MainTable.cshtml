@@ -1,0 +1,63 @@
+﻿@model AlmaTest.Models.MainTableViewModel
+
+@*<br />
+    <table class="table table-bordered">
+        <tr>
+            @for (int i = 0; i < 32; i++)
+            {
+                <th>@(i + 1)</th>
+            }
+        </tr>
+
+        <tr>
+            @foreach (var value in ViewBag.Result)
+            {
+                if (value)
+                {
+                    <td style="background: green">@value</td>
+                }
+                else
+                {
+                    <td style="background: red">@value</td>
+                }
+            }
+        </tr>
+    </table>*@
+
+<div style="display: table" class="table table-hover">
+    <a style="display: table-row" href="#">
+        <div style="display: table-cell">Some</div> 
+        <div style="display: table-cell">text</div> 
+        <div style="display: table-cell">here.</div> 
+    </a>
+</div>
+
+@*<table class="table table-hover">
+    <tr>
+        <th>Client</th>
+        <th>Distributor</th>
+        <th>DB (Date)</th>
+        <th>Host</th>
+        <th>Date</th>
+    </tr>
+
+    @foreach (var client in Model.Clients)
+    {
+        
+            <tr>
+
+                <td>@client.Client</td>
+                <td>@client.Distributor</td>
+                <td>@client.Baza</td>
+                <td>@client.HostName</td>
+                <td>
+                    @{
+                        DateTime date = client.Date ?? DateTime.MinValue;
+                        @date.ToShortDateString();
+                    }
+                </td>
+
+            </tr>
+       }
+</table>*@
+

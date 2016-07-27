@@ -18,7 +18,7 @@ namespace AlmaTest.DAO
 
         public List<MainTable> FindAll()
         {
-            var result = db.MainTable.ToList<MainTable>();
+            var result = db.MainTable.Take(400).ToList<MainTable>();
 
             return result;
         }

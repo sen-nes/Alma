@@ -24,40 +24,28 @@
         </tr>
     </table>*@
 
-<div style="display: table" class="table table-hover">
-    <a style="display: table-row" href="#">
-        <div style="display: table-cell">Some</div> 
-        <div style="display: table-cell">text</div> 
-        <div style="display: table-cell">here.</div> 
-    </a>
+<div class="col-md-5 col-offset-7">
+        <div style="display: table" class="table table-hover">
+            <a style="display: table-row" href="#">
+                <div style="display: table-caption">Some</div>
+                <div style="display: table-cell">text</div>
+                <div style="display: table-cell">here.</div>
+            </a>
+
+            @foreach (var client in Model.Clients)
+            {
+                <a style="display: table-row" href="#">
+                    <div style="display: table-caption">@client.Client</div>
+                    <div style="display: table-cell">@client.Distributor</div>
+                    <div style="display: table-cell">@client.Baza</div>
+                    <div style="display: table-cell">@client.HostName</div>
+                    <div style="display: table-cell">
+                        @{
+                            DateTime date = client.Date ?? DateTime.MinValue;
+                            @date.ToShortDateString();
+                        }
+                    </div>
+                </a>
+                            }
+        </div>
 </div>
-
-@*<table class="table table-hover">
-    <tr>
-        <th>Client</th>
-        <th>Distributor</th>
-        <th>DB (Date)</th>
-        <th>Host</th>
-        <th>Date</th>
-    </tr>
-
-    @foreach (var client in Model.Clients)
-    {
-        
-            <tr>
-
-                <td>@client.Client</td>
-                <td>@client.Distributor</td>
-                <td>@client.Baza</td>
-                <td>@client.HostName</td>
-                <td>
-                    @{
-                        DateTime date = client.Date ?? DateTime.MinValue;
-                        @date.ToShortDateString();
-                    }
-                </td>
-
-            </tr>
-       }
-</table>*@
-

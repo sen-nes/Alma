@@ -21,7 +21,7 @@ namespace AlmaTest.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Users", throwIfV1Schema: false)
         {
         }
 

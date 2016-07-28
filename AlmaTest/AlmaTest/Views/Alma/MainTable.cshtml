@@ -1,51 +1,90 @@
 ﻿@model AlmaTest.Models.MainTableViewModel
 
-@*<br />
-    <table class="table table-bordered">
-        <tr>
-            @for (int i = 0; i < 32; i++)
-            {
-                <th>@(i + 1)</th>
+<script type="text/javascript" src="~/Scripts/Custom.js"></script>
+
+<div style="margin-top: 10px;" class="row">
+    <div class="col-md-6">
+        <div class="">
+            <div style="margin-bottom: 10px;" class="col-md-offset-2 col-md-8">
+                <form method="POST" class="form-inline">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="distributor" @if (Model.Distributor != null) { string value = "value=" + Model.Distributor; @value  } placeholder="Distributor..." />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <tr style="background-color: #CFCFCF;">
+                <th>Client</th>
+                <th>Distributor</th>
+                <th>Database</th>
+                <th>Host</th>
+                <th>Date</th>
+            </tr>
+        </table>
+
+        <style>
+            #table li {
+                display: table-cell;
+                width: 20%;
             }
-        </tr>
 
-        <tr>
-            @foreach (var value in ViewBag.Result)
-            {
-                if (value)
-                {
-                    <td style="background: green">@value</td>
-                }
-                else
-                {
-                    <td style="background: red">@value</td>
-                }
+            ul {
+                display: table-row;
             }
-        </tr>
-    </table>*@
 
-<div class="col-md-5 col-offset-7">
-        <div style="display: table" class="table table-hover">
-            <a style="display: table-row" href="#">
-                <div style="display: table-caption">Some</div>
-                <div style="display: table-cell">text</div>
-                <div style="display: table-cell">here.</div>
-            </a>
-
+            #table {
+                display: table;
+            }            
+        </style>
+        <div id="table" class="table table-bordered">
             @foreach (var client in Model.Clients)
             {
-                <a style="display: table-row" href="#">
-                    <div style="display: table-caption">@client.Client</div>
-                    <div style="display: table-cell">@client.Distributor</div>
-                    <div style="display: table-cell">@client.Baza</div>
-                    <div style="display: table-cell">@client.HostName</div>
-                    <div style="display: table-cell">
+
+                <ul onClick="dropdwn(this, @client.ID)">
+                    <li>@client.Client</li>
+                    <li>@client.Distributor</li>
+                    <li>@client.Baza</li>
+                    <li>@client.HostName</li>
+                    <li>
                         @{
                             DateTime date = client.Date ?? DateTime.MinValue;
-                            @date.ToShortDateString();
+                            @date.ToShortDateString()
                         }
-                    </div>
-                </a>
+                    </li>
+                </ul>
+
                             }
         </div>
+    </div>
+
+    <style>
+        .div {
+            margin: 10px;
+            padding: 12px;
+            border: 2px solid #666;
+            width: 60px;
+        }
+    </style>
+
+    
+    <div class="col-md-6">
+        <div>
+            <h1>This is not supposed to move.</h1>
+        </div>
+
+        <div>
+            <h2>This is not supposed to move as well.</h2>
+        </div>
+        <div id="the-stick-anchor"></div>
+        <div id="the-stick">
+            Is it better if it's here <br />
+            Or there<br />
+            ?
+        </div>
+    </div>
 </div>
+
+

@@ -13,5 +13,6 @@ namespace AlmaTest.Models
     public class MainTableViewModel
     {
         public List<MainTable> Clients { get; set; }
+        public string Distributor { get; set; }
     }
 }

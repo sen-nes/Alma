@@ -18,9 +18,19 @@ namespace AlmaTest.DAO
 
         public List<MainTable> FindAll()
         {
-            var result = db.MainTable.Take(400).ToList<MainTable>();
+            // Fix number to take
+            var result = db.MainTable.Take(25).ToList<MainTable>();
 
             return result;
+        }
+
+        public List<MainTable> FindByDistributor(string distributor)
+        {
+            var result = from rec in db.MainTable
+                         select rec;
+            result = result.Where(r => r.Distributor.Equals(distributor));
+
+            return result.ToList<MainTable>();
         }
     }
 }

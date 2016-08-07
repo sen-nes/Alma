@@ -14,9 +14,9 @@ namespace AlmaTest.DAO
             db = new AlmaContext();
         }
 
-        public List<Modules> FindAll()
+        public IQueryable<Modules> FindAll()
         {
-            var modules = db.Modules.ToList<Modules>();
+            var modules = db.Modules;
 
             return modules;
         }

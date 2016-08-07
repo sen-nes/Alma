@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AlmaTest.Models
 {
@@ -16,6 +18,7 @@ namespace AlmaTest.Models
                 _id = value;
             }
         }
+
         private string _client;
         public string Client
         {
@@ -28,6 +31,7 @@ namespace AlmaTest.Models
                 _client = value;
             }
         }
+
         private string _distributor;
         public string Distributor
         {
@@ -40,6 +44,7 @@ namespace AlmaTest.Models
                 _distributor = value;
             }
         }
+
         private string _baza;
         public string Baza
         {
@@ -52,6 +57,7 @@ namespace AlmaTest.Models
                 _baza = value;
             }
         }
+
         private string _note;
         public string Note
         {
@@ -64,6 +70,7 @@ namespace AlmaTest.Models
                 _note = value;
             }
         }
+
         private DateTime? _date;
         public DateTime? Date
         {
@@ -76,6 +83,7 @@ namespace AlmaTest.Models
                 _date = value;
             }
         }
+
         private string _progKey;
         public string ProgKey
         {
@@ -88,6 +96,7 @@ namespace AlmaTest.Models
                 _progKey = value;
             }
         }
+
         private string _pass;
         public string Pass
         {
@@ -100,6 +109,7 @@ namespace AlmaTest.Models
                 _pass = value;
             }
         }
+
         private bool? _accOffice;
         public bool? AccOffice
         {
@@ -112,6 +122,7 @@ namespace AlmaTest.Models
                 _accOffice = value;
             }
         }
+
         private string _txtMod;
         public string TxtMod
         {
@@ -124,6 +135,7 @@ namespace AlmaTest.Models
                 _txtMod = value;
             }
         }
+
         private string _txtPrice;
         public string TxtPrice
         {
@@ -136,6 +148,7 @@ namespace AlmaTest.Models
                 _txtPrice = value;
             }
         }
+
         private int? _modules;
         public int? Modules
         {
@@ -148,6 +161,7 @@ namespace AlmaTest.Models
                 _modules = value;
             }
         }
+
         private int? _firmi;
         public int? Firmi
         {
@@ -160,6 +174,7 @@ namespace AlmaTest.Models
                 _firmi = value;
             }
         }
+
         private int? _rabMesta;
         public int? RabMesta
         {
@@ -172,6 +187,7 @@ namespace AlmaTest.Models
                 _rabMesta = value;
             }
         }
+
         private string _hostName;
         public string HostName
         {

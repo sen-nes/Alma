@@ -1,21 +1,39 @@
-﻿$(document).ready(function () {
-    // $('#the-sticky').load('/Home/About');
+﻿var ajaxRequest;
+
+$(document).ready(function () {
     $(window).scroll(sticky_relocate);
-    ulHover();
+    clientSelect();
+    testingAjax();
 });
 
-function ulHover() {
-    $("#table ul")
-        .mouseover(function () {
-            $(this).css({ 'cursor': 'pointer', 'background-color': '#AED6F1' });
-        })
+function clientSelect() {
+    $("#clients tbody tr")
         .mouseout(function () {
-            $(this).css({ 'cursor': 'pointer', 'background-color': '' });
+            $(this).css({ 'cursor': 'pointer' });
         })
-        //.bind('click', function () {
-            
-        //});
+        .bind('click', function () {
+            var id = $(this).attr('id');
 
+            ajaxFunction();
+            $.ajax({
+                type: "GET",
+                url: "/api/Client/" + id,
+                success: function (text) {
+                    $("#name").text(text.Client);
+                    $("#database").text(text.Baza);
+                    $("#date").text(text.Date);
+                    $("#host").text(text.HostName);
+
+                    $("#details").removeClass("hidden");
+                },
+                error: function () {
+                    $("#details").addClass("hidden");
+                    alert("error");
+                },
+                complete: function () {
+                }
+            });
+        });
 };
 
 function sticky_relocate() {
@@ -23,20 +41,51 @@ function sticky_relocate() {
     var div_top = $('#the-stick-anchor').offset().top;
     if (window_top + 61 >= div_top) {
         $('#the-stick').addClass('sticky');
-        //$('#the-sticky').show();
+        $('#the-sticky').show();
     }
     else {
         $('#the-stick').removeClass('sticky');
-        //$('#the-sticky').hide();
+        $('#the-sticky').hide();
     }
 }
 
-function dropdwn(target, id) {
-    if ($('#drop' + id).length) {
-        $('#drop' + id).remove();
-    } 
-    else {
-        $(target).after('<div id=drop' + id + '> <h1>' + id + '</h1> </div>');
+function details(target, id) {
+    
+}
+
+function ajaxFunction() {
+    try {
+        ajaxRequest = new XMLHttpRequest();
+    } catch (e) {
+        try {
+            ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                console("Your browser broke!")
+
+                return false;
+            }
+        }
     }
 }
 
+function testingAjax() {
+    ajaxFunction();
+
+    $.ajax({
+        type: "GET",
+        url: "/api/ClientNames",
+        success: function (names) {
+            $("#client-name").autocomplete({
+                source: names
+            });
+        },
+        error: function () {
+            alert("error");
+        },
+        complete: function () {
+        }
+    });
+}

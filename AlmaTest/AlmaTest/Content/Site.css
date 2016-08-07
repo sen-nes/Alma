@@ -31,3 +31,7 @@ textarea {
 #the-stick {
     padding-top: 10px;
 }
+
+.bolded {
+    font-weight: bold;
+}

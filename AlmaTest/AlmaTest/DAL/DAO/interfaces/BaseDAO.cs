@@ -8,6 +8,6 @@ namespace AlmaTest.DAL.DAO.interfaces
 {
     interface BaseDAO<T>
     {
-        List<T> FindAll();
+        IQueryable<T> FindAll();
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AlmaTest.DAO;
 using AlmaTest.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace AlmaTest.Controllers
@@ -9,35 +11,40 @@ namespace AlmaTest.Controllers
         public ActionResult Modules()
         {
             ModuleDAO dao = new ModuleDAO();
+            var modules = dao.FindAll();
             var vm = new ModulesViewModel
             {
-                Modules = dao.FindAll()
-            };
+                Modules = modules.ToList<Modules>()
+        };
 
             return View(vm);
         }
-
-        [HttpGet]
-        public ActionResult MainTable()
+        
+        public ActionResult MainTable(MainTableViewModel vmPass, int? page, string client)
         {
             MainTableDAO dao = new MainTableDAO();
+            List<MainTable> clients = new List<MainTable>();
+            ViewBag.vm = vmPass.Clients;
+            if (page == null || page < 1)
+            {
+                page = 1;
+            }
+
+            if (client != null)
+            {
+                clients = dao.GetPage(dao.FindByClient(client), (int)page - 1, 25);
+            } else
+            {
+                clients = dao.GetPage(dao.FindAll(), (int)page - 1, 25);
+            }
+            
+
             var vm = new MainTableViewModel
             {
-                Distributor = null,
-                Clients = dao.FindAll()
-            };
-
-            return View(vm);
-        }
-
-        [HttpPost]
-        public ActionResult MainTable(string distributor)
-        {
-            MainTableDAO dao = new MainTableDAO();
-            var vm = new MainTableViewModel
-            {
-                Distributor = distributor,
-                Clients = dao.FindByDistributor(distributor)
+                Clients = clients,
+                Client = client,
+                Page = (int)page,
+                RecordsPerPage = 25
             };
 
             return View(vm);

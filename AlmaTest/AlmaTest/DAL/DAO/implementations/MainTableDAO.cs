@@ -1,9 +1,7 @@
 ﻿using AlmaTest.DAL.DAO.interfaces;
 using AlmaTest.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AlmaTest.DAO
 {
@@ -16,21 +14,44 @@ namespace AlmaTest.DAO
             db = new AlmaContext();
         }
 
-        public List<MainTable> FindAll()
+        public IQueryable<MainTable> FindAll()
         {
-            // Fix number to take
-            var result = db.MainTable.Take(25).ToList<MainTable>();
+            var result = db.MainTable.OrderBy(r => r.Client);
+
+            return result;
+        }
+        
+        public IQueryable<MainTable> FindByClient(string client)
+        {
+            var result = from rec in db.MainTable
+                         select rec;
+            result = result.Where(r => r.Client.Equals(client)).OrderBy(r => r.Client);
 
             return result;
         }
 
-        public List<MainTable> FindByDistributor(string distributor)
+        public List<MainTable> GetPage(IQueryable<MainTable> clients, int page, int perPage)
         {
-            var result = from rec in db.MainTable
-                         select rec;
-            result = result.Where(r => r.Distributor.Equals(distributor));
+            int skip = page * perPage;
+            var result = clients.Skip(skip).Take(perPage);
 
-            return result.ToList<MainTable>();
+            return result.ToList();
+        }
+
+        public MainTable FindByID(int id)
+        {
+            var client = db.MainTable.Where(c => c.ID == id).FirstOrDefault();
+
+            return client;
+        }
+
+        public string[] GetClientNames()
+        {
+            var names = from rec in db.MainTable
+                        select rec.Client;
+            names = names.Distinct();
+
+            return names.ToArray();
         }
     }
 }

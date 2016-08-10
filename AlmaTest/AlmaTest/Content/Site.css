@@ -25,13 +25,22 @@ textarea {
 
 .sticky {
     position: fixed;
-    top: 61px;
+    top: 0px;
 }
 
 #the-stick {
-    padding-top: 10px;
+    padding-top: 0px;
 }
 
 .bolded {
+    font-weight: bold;
+}
+
+#modules input {
+    margin-right: 3px;
+}
+
+.password {
+    color: red;
     font-weight: bold;
 }

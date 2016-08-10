@@ -16,9 +16,16 @@ namespace AlmaTest.DAO
 
         public IQueryable<Modules> FindAll()
         {
-            var modules = db.Modules;
+            var modules = db.Modules.OrderBy(r => r.Position);
 
             return modules;
+        }
+
+        public string[] GetModules()
+        {
+            var modules = db.Modules.OrderBy(r => r.Position).Select(r => r.Module);
+
+            return modules.ToArray();
         }
     }
 }

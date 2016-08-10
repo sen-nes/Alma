@@ -4,9 +4,9 @@
     <div style="margin-bottom: 10px;" class="col-md-offset-4 col-md-4">
         <form method="GET" class="form-inline">
             <div class="form-group">
-                <input id="client-name" class="form-control" type="text" name="client" @if (Model.Client != null) { string value = "value=" + Model.Client;} placeholder="Distributor..." data-provide="typeahead"/>
+                <input id="client-name" class="form-control" type="text" name="client" @if (Model.Client != null) { string value = "value=" + Model.Client;} placeholder="Клиент..." data-provide="typeahead"/>
             </div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" class="btn btn-primary">Търси</button>
         </form>
     </div>
 </div>
@@ -16,10 +16,10 @@
         <table id="clients" class="table table-hover">
             <thead>
                 <tr style="background-color: #CFCFCF;">
-                    <th>Client</th>
-                    <th>Database</th>
-                    <th>Host</th>
-                    <th>Date</th>
+                    <th>Клиент</th>
+                    <th>База данни</th>
+                    <th>Хост</th>
+                    <th>Дата</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,39 +64,438 @@
     </div>
 
     <div class="col-md-6">
-        <h1>This is not supposed to move.</h1>
-        <h2>This is not supposed to move as well.</h2>
         <div id="the-stick-anchor"></div>
         <div id="the-stick">
             <div id="details" class="form-horizontal hidden">
+                <h1>Панел за <нещо></h1>
                 <div class="form-group row">
-                    <label class="col-sm-2 control-label">Client</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label" for="name">Клиент</label>
+                    <div class="col-sm-9">
                         <p class="form-control-static" id="name"></p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 control-label">Database</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label" for="database">База (година)</label>
+                    <div class="col-sm-9">
                         <p class="form-control-static" id="database"></p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 control-label">Date</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label" for="date">Дата</label>
+                    <div class="col-sm-9">
                         <p class="form-control-static" id="date"></p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 control-label">Host</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label" for="note">Бележка</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" id="note"></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label" for="firmi">Фирми</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <span id="firmi"></span>
+                            <label>
+                                <input id="accOffice" type="checkbox" disabled="true"> Сч. офис
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label" for="rabMesta">Работни места</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" id="rabMesta"></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label" for="progKey">ProgKey</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" id="progKey"></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label" for="pass">Парола</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static password" id="pass"></p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label" for="host">Хост</label>
+                    <div class="col-sm-9">
                         <p class="form-control-static" id="host"></p>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 control-label">Модули</label>
+                    <div class="col-sm-9" id="modules">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module1" disabled="true" /> ДДС</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module17" disabled="true" /> НФП</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module2" disabled="true" /> Материали и стоки</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module18" disabled="true" /> Планиране на разходите</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module3" disabled="true" /> ГП</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module19" disabled="true" /> Фактуриране като модул</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module4" disabled="true" /> Материали и стоки (старо)</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module20" disabled="true" /> Банка,каса като модул</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module5" disabled="true" /> Калкулации</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module21" disabled="true" /> Оперативно осчетоводяване</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module6" disabled="true" /> Връзка с каси</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module22" disabled="true" /> Протоколи ДДС</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module7" disabled="true" /> ДМА</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module23" disabled="true" /> VIES</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module8" disabled="true" /> ТРЗ</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module24" disabled="true" /> Консигнации</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module9" disabled="true" /> Разпределение</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module25" disabled="true" /> ПИС</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module10" disabled="true" /> Автотранспорт</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module26" disabled="true" /> Акциз</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module11" disabled="true" /> Валута</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module27" disabled="true" /> Кредитен лимит</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module12" disabled="true" /> Платежни нареждания</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module28" disabled="true" /> Амбалаж</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module13" disabled="true" /> Импорт - експорт</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module29" disabled="true" /> Автом.заскл.полуфабр.</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module14" disabled="true" /> ---Инвентаризации в МТС</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module30" disabled="true" /> модул 30</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module15" disabled="true" /> Ядро</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module31" disabled="true" /> модул 31</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module16" disabled="true"> НФД</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="module32" disabled="true"> модул 32</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="addBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><Добави бутон></button><br /><br />
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><Добави></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newName">Клиент</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newName" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newDatabase">База (година)</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newDatabase" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newDate">Дата</label>
+                    <div class="col-sm-10">
+                        <input type="date" id="newDate" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newNote">Бележка</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newNote" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newFirmi">Фирми</label>
+                    <div class="col-sm-10">
+                        <input type="number" id="newFirmi" class="form-control" />
+                        <div class="checkbox">
+                            <label>
+                                <input id="newAccOffice" type="checkbox"> Сч. офис
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newRabMesta">Работни места</label>
+                    <div class="col-sm-10">
+                        <input type="number" id="newRabMesta" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newProgKey">ProgKey</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newProgKey" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newPass">Парола</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newPass" class="form-control" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label" for="newHost">Хост</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="newHost" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 control-label">Модули</label>
+                    <div class="col-sm-10 form-group-lg" id="newModules">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule1" /> ДДС</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule17" /> НФП</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule2" /> Материали и стоки</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule18" /> Планиране на разходите</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule3" /> ГП</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule19" /> Фактуриране като модул</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule4" /> Материали и стоки (старо)</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule20" /> Банка,каса като модул</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule5" /> Калкулации</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule21" /> Оперативно осчетоводяване</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule6" /> Връзка с каси</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule22" /> Протоколи ДДС</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule7" /> ДМА</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule23" /> VIES</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule8" /> ТРЗ</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule24" /> Консигнации</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule9" /> Разпределение</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule25" /> ПИС</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule10" /> Автотранспорт</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule26" /> Акциз</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule11" /> Валута</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule27" /> Кредитен лимит</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule12" /> Платежни нареждания</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule28" /> Амбалаж</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule13" /> Импорт - експорт</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule29" /> Автом.заскл.полуфабр.</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule14" /> ---Инвентаризации в МТС</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule30" /> модул 30</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule15" /> Ядро</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule31" /> модул 31</label></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule16" /> НФД</label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox"><label><input type="checkbox" id="newModule32" /> модул 32</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+                <button type="button" class="btn btn-primary"><Поискай парола></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

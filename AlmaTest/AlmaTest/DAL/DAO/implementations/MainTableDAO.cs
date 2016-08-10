@@ -16,16 +16,23 @@ namespace AlmaTest.DAO
 
         public IQueryable<MainTable> FindAll()
         {
-            var result = db.MainTable.OrderBy(r => r.Client);
+            var result = db.MainTable.OrderBy(r => r.Client).ThenByDescending(r => r.Date);
 
             return result;
         }
-        
+
+        public MainTable FindByID(int id)
+        {
+            var client = db.MainTable.Where(c => c.ID == id).FirstOrDefault();
+
+            return client;
+        }
+
         public IQueryable<MainTable> FindByClient(string client)
         {
             var result = from rec in db.MainTable
                          select rec;
-            result = result.Where(r => r.Client.Equals(client)).OrderBy(r => r.Client);
+            result = result.Where(r => r.Client.Contains(client)).OrderBy(r => r.Client).ThenByDescending(r => r.Date);
 
             return result;
         }
@@ -36,13 +43,6 @@ namespace AlmaTest.DAO
             var result = clients.Skip(skip).Take(perPage);
 
             return result.ToList();
-        }
-
-        public MainTable FindByID(int id)
-        {
-            var client = db.MainTable.Where(c => c.ID == id).FirstOrDefault();
-
-            return client;
         }
 
         public string[] GetClientNames()

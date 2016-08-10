@@ -7,21 +7,28 @@ namespace AlmaTest.Controllers
     public class apiController : Controller
     {
         [WebMethod]
-        public JsonResult ClientNames()
+        public JsonResult Clients(int? id)
         {
             MainTableDAO dao = new MainTableDAO();
-            var clientNames = dao.GetClientNames();
+            object result;
+            if (id == null)
+            {
+                result = dao.GetClientNames();
+            } else
+            {
+                result = dao.FindByID((int)id);
+            }
 
-            return Json(clientNames, JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [WebMethod]
-        public JsonResult Client(int id)
+        public JsonResult Modules()
         {
-            MainTableDAO dao = new MainTableDAO();
-            var client = dao.FindByID(id);
+            ModuleDAO dao = new ModuleDAO();
+            var modules = dao.GetModules();
 
-            return Json(client, JsonRequestBehavior.AllowGet);
+            return Json(modules, JsonRequestBehavior.AllowGet);
         }
     }
 }
